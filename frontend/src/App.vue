@@ -9,11 +9,20 @@
           Use Cases
         </button>
   </div>
-  <div class="body">
-    <button class="openApplication" @click="openApplication">
-      Open Application
-    </button>
-  </div>
+
+    <div class="body">
+      <div class="introText" style="font-size: 45px; 
+    font-weight: 550; margin-top: 50px">
+        Empowering Financial Analysis
+      </div>
+      <div class="introText">
+        Estimate a company's valuation in minutes!
+      </div>
+      <button class="openApplication" @click="openApplication">
+        Open Application
+      </button>
+    </div>
+
 </div>
 </template>
 
@@ -92,27 +101,45 @@ export default {
     color: rgb(255, 255, 255); 
    }
    .body{
-
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
     background-color: rgb(255, 255, 255);
-
+    align-items: center;   
+    justify-content: center;
     left: inherit;
     right: inherit;
     margin-top: 50px;
     bottom: inherit;
    }
    .openApplication{
-    width: 200px;
-    height: 30px;
+    width: 420px;
+    height: 40px;
     text-align: center center;
-    margin-top: 400px; 
+    margin-top: 20px;
     font-family: Open Sans; 
     font-size: 18px; 
     font-weight: 300; 
     color: rgb(226, 226, 226); 
     line-height: 1.4; 
-    border-radius: 15px; 
+    border-radius: 5px; 
     background-color:  rgb(10, 48, 0);
 
    }
+   .openApplication:hover{
+    background-color:  rgb(38, 136, 13);
+    font-size: 20px; 
+
+    color: rgb(255, 255, 255); 
+   }
+   .introText{
+    margin-top: 20px;
+    font-family: Open Sans; 
+    font-size: 24px; 
+    font-weight: 300; 
+
+   }
+   
 
 </style>
