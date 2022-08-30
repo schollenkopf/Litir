@@ -2,7 +2,7 @@
   <div class="frame">
       <menu-bar />
      
-      <router-view />
+      <router-view class="router"/>
     </div>
 </template>
 
@@ -17,12 +17,14 @@ export default {
 
 <style>
 .frame{
-
+    position: absolute;
+    height: 100%;
     width: 100%;
-    top: 0px;
-    right: 0px;
-    left: 0px;
-    bottom: 0px;
+   
   }
+.router{
+  position: relative;
+  height: 100%;
+}
 
 </style>

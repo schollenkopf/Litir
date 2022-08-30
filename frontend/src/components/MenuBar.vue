@@ -22,7 +22,7 @@
   
     height: 50px;
     max-height: calc(100% - 0px); 
-    position: fixed;
+    
 
     background-color: rgb(10, 48, 0); 
     display: flex;

@@ -43,9 +43,9 @@
 
 <style>
 .panel{
-    z-index: 5;
-    flex-direction: column;
-    justify-content: flex-start; margin-right: auto; width: initial; min-width: 120px; min-height: 0px; inset: 50px 0px 0px; max-width: 200px; height: initial; position: fixed; z-index: 1511; background-color: rgb(214, 214, 214); border-radius: 0px;
+    
+  
+    justify-content: flex-start;    height: initial; width: 200px; position: relative;  background-color: rgb(214, 214, 214); border-radius: 0px;
 }
 .userNameBox{
     
