@@ -55,7 +55,7 @@ export default {
     justify-content: center;
     left: inherit;
     right: inherit;
-    margin-top: 50px;
+    
     bottom: inherit;
    }
    .openApplication{

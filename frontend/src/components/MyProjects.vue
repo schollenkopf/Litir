@@ -1,5 +1,5 @@
 <template>
-    <Transition name="slide-fade">
+    <Transition name="slide-fade" mode="out-in">
         
         <table v-if="showTable">
             <thead >
@@ -15,7 +15,7 @@
             </tbody>
         </table>
     </Transition>
-    <Transition name="slide-fade">
+    <Transition name="slide-fade" mode="out-in">
 
         <div class="details" v-if="!showTable"/>
     </Transition>
