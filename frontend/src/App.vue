@@ -2,7 +2,12 @@
   <div class="frame">
       <menu-bar />
      
-      <router-view class="router"/>
+     
+      <router-view class="router" v-slot="{ Component }">
+        <transition name="fade">
+          <component :is="Component" />
+        </transition>
+      </router-view>
     </div>
 </template>
 
@@ -27,4 +32,14 @@ export default {
   height: 100%;
 }
 
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
 </style>
+

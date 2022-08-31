@@ -1,9 +1,19 @@
 <template>
-    <div class="mainBody">
+
+
+ 
+    <div class="mainBody" key="main">
         
-        <SidePanel/>
-        <MyProjects/>
-    </div>
+            <SidePanel/>
+           
+
+                <MyProjects/>
+
+           
+        </div>
+
+    
+
   
       
     
@@ -15,11 +25,13 @@ import SidePanel from "./SidePanel.vue";
 import MyProjects from "./MyProjects.vue";
 
 
+
 export default{
 
-    components: { SidePanel, MyProjects }
+    components: { SidePanel, MyProjects },
+  
+    
 }
-
 </script>
 
 <style>
@@ -30,5 +42,7 @@ export default{
     background-color: rgb(255, 255, 255);
     
 }
+
+
 
 </style>

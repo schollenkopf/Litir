@@ -1,8 +1,10 @@
 <template>
 
   
+  
 
-    <div class="body">
+  
+    <div class="body" key="intro">
       <div class="introText" style="font-size: 45px; 
     font-weight: 550; margin-top: 50px">
         Empowering Financial Analysis
@@ -14,6 +16,7 @@
         Open Application
       </button>
     </div>
+
 
 
 </template>
@@ -82,6 +85,14 @@ export default {
     font-weight: 300; 
 
    }
-   
+   .fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 
 </style>
