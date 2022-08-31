@@ -1,5 +1,5 @@
 <template>
-    <Transition name="slide-fade" mode="out-in">
+    <Transition name="project-table" mode="out-in">
         
         <table v-if="showTable">
             <thead >
@@ -9,15 +9,33 @@
                 </tr>
             </thead>
             <tbody>
-                <tr @click="clickedRow" class="datarow" v-for="project in projects" :key="project">
+                <tr @click="switchView" class="datarow" v-for="project in projects" :key="project">
                     <td v-for="field in project" :key="field">{{field}}</td>
                 </tr>
             </tbody>
         </table>
-    </Transition>
-    <Transition name="slide-fade" mode="out-in">
+  
 
-        <div class="details" v-if="!showTable"/>
+        <div class="details" v-else-if="!showTable">
+            <v-btn class="back"
+            @click.stop="switchView"
+            icon
+            
+          >
+            <v-icon>mdi-arrow-left</v-icon>
+          </v-btn>
+          <div class="detailsHeader">
+            <div class="detailsHeaderFirstRow">
+                <div class="titleCompany">
+                    {{this.projects[0][1]}}
+                </div>
+                <button class="detailsExpandButton">
+                    <v-icon>mdi-arrow-up</v-icon>
+                </button>
+            </div>
+
+          </div>
+        </div>
     </Transition>
 
 
@@ -27,14 +45,15 @@
 export default{
     data(){
         return {
-            showTable: true,
+            
+            showTable: false,
             fieldnames: ["Project name","Company","Stage","Country","Creation Date","Industry"],
             projects: [["test","IKEA Aktiebolag","Screening / incoming","Sweden(SEK)","Aug 23, 2022","n/a"],["test","IKEA Aktiebolag","Screening / incoming","Sweden(SEK)","Aug 23, 2022","n/a"]]
         }
     },
     methods: {
-        clickedRow(){
-            this.showTable = false
+        switchView(){
+            this.showTable = !this.showTable
         }
     },
     
@@ -43,10 +62,44 @@ export default{
 </script>
 
 <style>
+.detailsExpandButton{
+    color: white;
+    align-self: center;
+    margin-left: 10px;
+
+}
+.titleCompany{
+    font-size: 22px;
+    color: white;
+}
+
+.detailsHeaderFirstRow{
+    flex-direction: row;
+    align-items: center;
+    
+    display: flex;
+
+}
+.detailsHeader{
+    min-height: 100px;
+    padding: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+    background-color: rgb(10, 48, 0);
+    border-radius: 5px;
+}
+
+.back{
+    height: 20px;
+    margin-left: 20px;
+    margin-top: 10px;
+    
+}
 .details {
     width: 100%;
     height: 100%;
-    background-color: blue;
+  
 }
 table {
     border-collapse: collapse;
@@ -71,17 +124,21 @@ tr:hover {
     background-color: rgb(10, 48, 0);
     color: white
 }
-.slide-fade-enter-active {
+.project-table-enter-active {
     transition: all 0.3s ease-out;
   }
   
-  .slide-fade-leave-active {
-    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+  .project-table-leave-active {
+    transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
   }
   
-  .slide-fade-enter-from,
-  .slide-fade-leave-to {
-    transform: translateX(20px);
-    opacity: 0;
+  .project-table-enter-from{
+    transform: translateY(100px);
   }
+  .project-table-leave-to {
+    opacity: 0;
+    
+  }
+
+
 </style>

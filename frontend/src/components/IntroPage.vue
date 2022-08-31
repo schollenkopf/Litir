@@ -52,7 +52,7 @@ export default {
     flex-direction: column;
     background-color: rgb(255, 255, 255);
     align-items: center;   
-    justify-content: center;
+    
     left: inherit;
     right: inherit;
     
