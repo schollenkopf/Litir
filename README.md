@@ -1,24 +1,19 @@
-# frontend
+## BUILD
 
-## Project setup
-```
-yarn install
-```
+- docker build -t litir-frontend:latest frontend/
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+- docker build -t litir-backend:latest flask-server/
 
-### Compiles and minifies for production
-```
-yarn build
-```
 
-### Lints and fixes files
-```
-yarn lint
-```
+## RUN
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+docker compose up
+
+
+## Extra Commands 
+
+docker compose down
+
+docker ps (see if some container is runnig)
+
+docker images 
