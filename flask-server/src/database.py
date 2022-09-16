@@ -3,6 +3,20 @@ import os
 
 class Database:
 
+    def login_user(self, email, password):
+        print("LOGIN")
+        print("EMAIL", email)
+        print("PASSWORD", password)
+
+    def register_user(self, username, email, password):
+        print("REGISTER")
+        print("Username", username)
+        print("EMAIL", email)
+        print("PASSWORD", password)
+
+
+    #Mock up stuff down below
+
     tableName = "words"
 
     def populate(self):

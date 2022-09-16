@@ -2,17 +2,26 @@ import {createRouter,createWebHistory} from 'vue-router'
 
 import IntroPage from './components/IntroPage.vue'
 import MainPage from './components/MainPage.vue'
-
-// import InputPage from './components/InputPage.vue'
-// import MainPage from './components/MainPage.vue'
-// import GraphView from './components/GraphView.vue'
-// import FilterView from './components/FilterView.vue'
+import LoginPage from './components/LoginPage.vue'
+import RegisterPage from './components/RegisterPage.vue'
 
 const routes = [
     {
         path: '/',
         component: IntroPage,
         name: 'IntroPage'
+    },
+
+    {
+        path: '/login',
+        component: LoginPage,
+        name: 'LoginPage'
+    },
+
+    {
+        path: '/register',
+        component: RegisterPage,
+        name: 'RegisterPage'
     },
 
     {

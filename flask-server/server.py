@@ -1,23 +1,30 @@
 
 
 from flask import Flask, request
+from flask_cors import CORS
 from src.database import Database
 
 app = Flask(__name__)
+CORS(app, origins=["http://localhost:8080"])
 # Members API Route
-d = Database()
+postgres = Database()
 
 @app.route("/")
 def home():
-    d.populate()
-    r = d.fetch()
-    return  r
+    return  "Home"
 
 
-@app.route("/import_raw_data", methods=['POST'])
-def import_raw_data():
+@app.route("/post_new_user", methods=['POST'])
+def post_new_user():
+    response = request.get_json()
+    postgres.register_user(response["username"], response["email"], response["password"])
 
-    print("done")
+    return "Done", 201
+
+@app.route("/login", methods=['POST'])
+def logins():
+    response = request.get_json()
+    postgres.login_user(response["email"], response["password"])
 
     return "Done", 201
 

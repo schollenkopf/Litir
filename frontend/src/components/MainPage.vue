@@ -1,22 +1,22 @@
 <template>
 
 
- 
+
     <div class="mainBody" key="main">
-        
-            <SidePanel/>
-           
 
-                <MyProjects/>
+        <SidePanel />
 
-           
-        </div>
 
-    
+        <MyProjects />
 
-  
-      
-    
+
+    </div>
+
+
+
+
+
+
 
 
 </template>
@@ -26,23 +26,20 @@ import MyProjects from "./MyProjects.vue";
 
 
 
-export default{
+export default {
 
     components: { SidePanel, MyProjects },
-  
-    
+
+
 }
 </script>
 
 <style>
-.mainBody{
+.mainBody {
     flex-direction: row;
     display: flex;
     height: 100%;
     background-color: rgb(255, 255, 255);
-    
+
 }
-
-
-
 </style>

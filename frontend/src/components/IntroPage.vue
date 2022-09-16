@@ -36,7 +36,7 @@ export default {
   }),
   methods: {
     openApplication(){
-      router.push("/application");
+      router.push("/register");
     }
   }
 }

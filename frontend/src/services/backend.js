@@ -4,16 +4,13 @@ export default class Backend{
         this.url = "http://127.0.0.1:5000"
     }
 
-    getUrlData(){
-        return this.url + "/import_raw_data"
+    login(){
+        return this.url + "/login"
     }
 
-    getGraph(){
-        return this.url + "/get_graph"
+    postNewUser(){
+        return this.url + "/post_new_user"
     }
 
-    filter(){
-        return this.url + "/filter"
-    }
 
 }
