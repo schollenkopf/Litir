@@ -42,15 +42,18 @@ export default {
     },
     methods: {
         submitForm() {
-            try {
-                this.axios.post(this.$backend.postNewUser(), this.form)
-                    .then(() => {
+            this.axios.post(this.$backend.postNewUser(), this.form)
+                .then((response) => {
+                    var a = response
+                    console.log(a)
+                    console.log(response.status)
+                    if(response.status == 277){
+                        console.log(response.data)
+                    }
+                    else{
                         console.log("NEW USER CREATED");
-                    })
-            }
-            catch (e) {
-                console.log(e);
-            }
+                    }
+                })
         },
         goToLoginPage(){
             router.push("/login");

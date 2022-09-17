@@ -36,8 +36,19 @@ export default {
         submitForm() {
             try {
                 this.axios.post(this.$backend.login(), this.form)
-                    .then(() => {
-                        console.log("LOGIN SUCCEDED");
+                    .then((response) => {
+                        var a = response
+                        console.log(a)
+                        console.log(response.status)
+                        if(response.status == 277){
+                            console.log(response.data)
+                        }
+                        else if(response.status == 266){
+                            console.log(response.data)
+                        }
+                        else{
+                            console.log("USER LOGGED IN");
+                        }
                     })
             }
             catch (e) {
