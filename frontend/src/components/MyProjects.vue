@@ -46,7 +46,7 @@ export default{
     data(){
         return {
             
-            showTable: false,
+            showTable: true,
             fieldnames: ["Project name","Company","Stage","Country","Creation Date","Industry"],
             projects: [["test","IKEA Aktiebolag","Screening / incoming","Sweden(SEK)","Aug 23, 2022","n/a"],["test","IKEA Aktiebolag","Screening / incoming","Sweden(SEK)","Aug 23, 2022","n/a"]]
         }

@@ -2,13 +2,16 @@ import psycopg2
 import os
 import time
 
+
 class EmailAlreadyExsists(Exception):
     """The email is already present in the DB"""
     pass
 
+
 class WrongPassword(Exception):
     """The password is wrong"""
     pass
+
 
 class Database:
 
@@ -17,6 +20,7 @@ class Database:
     logged_in_user = None
 
     def __init__(self) -> None:
+
         self.initTrue = self.init_tables()
 
     def init_tables(self):
@@ -25,17 +29,20 @@ class Database:
             try:
                 time.sleep(3)
                 conn = psycopg2.connect(host=os.environ['POSTGRES_HOST'], port=os.environ['POSTGRES_PORT'],
-                            user=os.environ['POSTGRES_USER'], password=os.environ['POSTGRES_PASSWORD'],
-                            database=os.environ['POSTGRES_DATABASE']
-                            )
+                                        user=os.environ['POSTGRES_USER'], password=os.environ['POSTGRES_PASSWORD'],
+                                        database=os.environ['POSTGRES_DATABASE']
+                                        )
                 cursor = conn.cursor()
-                cursor.execute(f"CREATE TABLE {self.user_table} (   id BIGSERIAL PRIMARY KEY NOT NULL,  "
-                                                                "   username VARCHAR(200) NOT NULL,     "
-                                                                "   email VARCHAR(200) NOT NULL,        "
-                                                                "   password VARCHAR(200) NOT NULL,     "
-                                                                "   UNIQUE (email)                      "
-                                                                ")")
-                conn.commit()
+                try:
+                    cursor.execute(f"CREATE TABLE {self.user_table} (   id BIGSERIAL PRIMARY KEY NOT NULL,  "
+                                   "   username VARCHAR(200) NOT NULL,     "
+                                   "   email VARCHAR(200) NOT NULL,        "
+                                   "   password VARCHAR(200) NOT NULL,     "
+                                   "   UNIQUE (email)                      "
+                                   ")")
+                    conn.commit()
+                except:
+                    pass
                 conn.close()
                 cursor.close()
                 exit = True
@@ -43,6 +50,18 @@ class Database:
                 time.sleep(1)
         return True
 
+    def password_correct(self, email, password):
+        conn = psycopg2.connect(host=os.environ['POSTGRES_HOST'], port=os.environ['POSTGRES_PORT'],
+                                user=os.environ['POSTGRES_USER'], password=os.environ['POSTGRES_PASSWORD'],
+                                database=os.environ['POSTGRES_DATABASE']
+                                )
+        cur = conn.cursor()
+        cur.execute(f"SELECT * FROM {self.user_table} WHERE email = '{email}'")
+        response = cur.fetchone()
+
+        conn.close()
+        cur.close()
+        return password == response[3]
 
     def login_user(self, email, password):
         if self.password_correct(email, password):
@@ -64,9 +83,9 @@ class Database:
     def email_already_exists(self, email):
         exists = False
         conn = psycopg2.connect(host=os.environ['POSTGRES_HOST'], port=os.environ['POSTGRES_PORT'],
-                     user=os.environ['POSTGRES_USER'], password=os.environ['POSTGRES_PASSWORD'],
-                     database=os.environ['POSTGRES_DATABASE']
-                     )
+                                user=os.environ['POSTGRES_USER'], password=os.environ['POSTGRES_PASSWORD'],
+                                database=os.environ['POSTGRES_DATABASE']
+                                )
         cur = conn.cursor()
         cur.execute(f"SELECT * FROM {self.user_table} WHERE email = '{email}'")
         response = cur.fetchall()
@@ -77,15 +96,16 @@ class Database:
         cur.close()
         return exists
 
-    #Mock up stuff down below
+    # Mock up stuff down below
 
     def add_user(self, username, email, password):
         conn = psycopg2.connect(host=os.environ['POSTGRES_HOST'], port=os.environ['POSTGRES_PORT'],
-                     user=os.environ['POSTGRES_USER'], password=os.environ['POSTGRES_PASSWORD'],
-                     database=os.environ['POSTGRES_DATABASE']
-                     )
+                                user=os.environ['POSTGRES_USER'], password=os.environ['POSTGRES_PASSWORD'],
+                                database=os.environ['POSTGRES_DATABASE']
+                                )
         cursor = conn.cursor()
-        cursor.execute(f"INSERT INTO {self.user_table} (id, username, email, password) VALUES( {self.n_users}, '{username}', '{email}', '{password}')")
+        cursor.execute(
+            f"INSERT INTO {self.user_table} (id, username, email, password) VALUES( {self.n_users}, '{username}', '{email}', '{password}')")
         conn.commit()
         conn.close()
         cursor.close()
@@ -94,21 +114,23 @@ class Database:
 
     def populate(self):
         conn = psycopg2.connect(host=os.environ['POSTGRES_HOST'], port=os.environ['POSTGRES_PORT'],
-                     user=os.environ['POSTGRES_USER'], password=os.environ['POSTGRES_PASSWORD'],
-                     database=os.environ['POSTGRES_DATABASE']
-                     )
+                                user=os.environ['POSTGRES_USER'], password=os.environ['POSTGRES_PASSWORD'],
+                                database=os.environ['POSTGRES_DATABASE']
+                                )
         cursor = conn.cursor()
-        cursor.execute(f"CREATE TABLE {self.tableName} (part_id SERIAL PRIMARY KEY, italian VARCHAR(255), german VARCHAR(255))")
-        cursor.execute(f"INSERT INTO {self.tableName} (part_id, italian, german) VALUES( 10, 'Ciao', 'Hallo')")
+        cursor.execute(
+            f"CREATE TABLE {self.tableName} (part_id SERIAL PRIMARY KEY, italian VARCHAR(255), german VARCHAR(255))")
+        cursor.execute(
+            f"INSERT INTO {self.tableName} (part_id, italian, german) VALUES( 10, 'Ciao', 'Hallo')")
         conn.commit()
         conn.close()
         cursor.close()
 
     def fetch(self):
         conn = psycopg2.connect(host=os.environ['POSTGRES_HOST'], port=os.environ['POSTGRES_PORT'],
-                     user=os.environ['POSTGRES_USER'], password=os.environ['POSTGRES_PASSWORD'],
-                     database=os.environ['POSTGRES_DATABASE']
-                     )
+                                user=os.environ['POSTGRES_USER'], password=os.environ['POSTGRES_PASSWORD'],
+                                database=os.environ['POSTGRES_DATABASE']
+                                )
         # Open a cursor to perform database operations
         cur = conn.cursor()
 

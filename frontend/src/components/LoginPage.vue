@@ -47,7 +47,7 @@ export default {
                             console.log(response.data)
                         }
                         else{
-                            console.log("USER LOGGED IN");
+                            router.push("/application");
                         }
                     })
             }
