@@ -40,5 +40,13 @@ def logins():
     return "Done", 201
 
 
+@app.route("get_projects", method=['GET'])
+def getProjects():
+    #id = request.get_json()["id"]
+    response = postgres.get_projects()
+
+    return response, 201
+
+
 if __name__ == "__main__":
     app.run(debug=True)
